@@ -34,7 +34,7 @@ interface Article {
   slug: string;
   excerpt: string;
   content: string;
-  author: string;
+  // author: string;
   category: ArticleCategory;
   published: boolean;
   tags: string;
@@ -53,7 +53,7 @@ export default function EditArticlePage({ params }: { params: Promise<{ slug: st
     title: '',
     excerpt: '',
     content: '',
-    author: '',
+    // author: '',
     category: '',
     published: false,
     tags: '',
@@ -112,7 +112,7 @@ export default function EditArticlePage({ params }: { params: Promise<{ slug: st
           title: article.title || '',
           excerpt: article.excerpt || '',
           content: article.content || '',
-          author: article.author || '',
+          // author: article.author || '',
           category: article.category?._id || article.category || '',
           published: article.published || false,
           tags: article.tags ? (Array.isArray(article.tags) ? article.tags.join(', ') : article.tags) : '',
@@ -147,11 +147,15 @@ const loadCategories = async () => {
     });
 
     const data = await response.json();
-    if (data && Array.isArray(data)) {
-      setCategories(data);
+    if (data && data.success && Array.isArray(data.data)) {
+      setCategories(data.data);
+    } else {
+      console.error('Invalid categories response:', data);
+      setCategories([]);
     }
   } catch (error) {
     console.error('Failed to load categories:', error);
+    setCategories([]);
   }
 };
 
@@ -297,7 +301,7 @@ return (
             />
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <div className="space-y-2">
+              {/* <div className="space-y-2">
                 <Label htmlFor="author">Author *</Label>
                 <Input
                   id="author"
@@ -306,7 +310,7 @@ return (
                   placeholder="Article author"
                   required
                 />
-              </div>
+              </div> */}
 
               <div className="space-y-2">
                 <Label>Category *</Label>

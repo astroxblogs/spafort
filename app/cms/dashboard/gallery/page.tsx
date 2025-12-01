@@ -180,7 +180,7 @@ export default function GalleryAdminPage() {
       </div>
 
       {/* Filters */}
-      <div className="flex flex-col sm:flex-row gap-3">
+      {/* <div className="flex flex-col sm:flex-row gap-3">
         <div className="flex-1">
           <Label htmlFor="search">Search</Label>
           <Input
@@ -207,7 +207,7 @@ export default function GalleryAdminPage() {
             Apply
           </Button>
         </div>
-      </div>
+      </div> */}
 
       {/* Grid */}
       <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">

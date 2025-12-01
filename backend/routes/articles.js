@@ -133,7 +133,7 @@ router.post('/', authenticateToken, requireAdmin, async (req, res) => {
     const articleData = req.body;
 
     // Validate required fields
-    const requiredFields = ['title', 'excerpt', 'content', 'category', 'author'];
+    const requiredFields = ['title', 'excerpt', 'content', 'category'];
     for (const field of requiredFields) {
       if (!articleData[field]) {
         return res.status(400).json({

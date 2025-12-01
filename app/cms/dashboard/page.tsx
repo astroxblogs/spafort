@@ -193,27 +193,30 @@ export default function CMSDashboard() {
                 </CardDescription>
               </CardHeader>
               <CardContent className="grid grid-cols-2 md:grid-cols-4 gap-6">
-                <Button 
-                  variant="outline" 
+                <Button
+                  variant="outline"
                   className="h-32 flex-col gap-3 border-2 border-purple-200 hover:border-purple-400 hover:bg-gradient-to-br hover:from-purple-50 hover:to-pink-50 transition-all duration-300 hover:shadow-xl hover:-translate-y-1 group"
+                  onClick={() => router.push("/cms/dashboard/homepage")}
                 >
                   <div className="p-3 bg-gradient-to-br from-purple-100 to-pink-100 rounded-2xl group-hover:scale-110 transition-transform duration-300">
                     <FileText className="h-7 w-7 text-purple-600" />
                   </div>
                   <span className="font-semibold text-gray-700">Edit Homepage</span>
                 </Button>
-                <Button 
-                  variant="outline" 
+                <Button
+                  variant="outline"
                   className="h-32 flex-col gap-3 border-2 border-pink-200 hover:border-pink-400 hover:bg-gradient-to-br hover:from-pink-50 hover:to-amber-50 transition-all duration-300 hover:shadow-xl hover:-translate-y-1 group"
+                  onClick={() => router.push("/cms/dashboard/services")}
                 >
                   <div className="p-3 bg-gradient-to-br from-pink-100 to-amber-100 rounded-2xl group-hover:scale-110 transition-transform duration-300">
                     <Users className="h-7 w-7 text-pink-600" />
                   </div>
                   <span className="font-semibold text-gray-700">Manage Services</span>
                 </Button>
-                <Button 
-                  variant="outline" 
+                <Button
+                  variant="outline"
                   className="h-32 flex-col gap-3 border-2 border-amber-200 hover:border-amber-400 hover:bg-gradient-to-br hover:from-amber-50 hover:to-orange-50 transition-all duration-300 hover:shadow-xl hover:-translate-y-1 group"
+                  onClick={() => router.push("/cms/dashboard/settings")}
                 >
                   <div className="p-3 bg-gradient-to-br from-amber-100 to-orange-100 rounded-2xl group-hover:scale-110 transition-transform duration-300">
                     <Settings className="h-7 w-7 text-amber-600" />

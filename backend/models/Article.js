@@ -25,7 +25,6 @@ const articleSchema = new mongoose.Schema({
   },
   author: {
     type: String,
-    required: true,
   },
   featuredImage: {
     type: String, // Cloudinary URL

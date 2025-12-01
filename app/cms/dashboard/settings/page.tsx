@@ -125,7 +125,7 @@ export default function SettingsManagement() {
           </CardHeader>
           <CardContent className="space-y-4">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <div className="space-y-2">
+              {/* <div className="space-y-2">
                 <Label htmlFor="contact_phone">Phone Number</Label>
                 <Input
                   id="contact_phone"
@@ -133,7 +133,7 @@ export default function SettingsManagement() {
                   onChange={(e) => updateSetting('contact_phone', e.target.value)}
                   placeholder="+1 (234) 567-890"
                 />
-              </div>
+              </div> */}
               <div className="space-y-2">
                 <Label htmlFor="contact_email">Email Address</Label>
                 <Input

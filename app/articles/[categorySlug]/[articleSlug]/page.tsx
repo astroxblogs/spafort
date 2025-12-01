@@ -74,24 +74,23 @@ export async function generateMetadata(
 
   return {
     title: `${article.title} - SpaFort`,
-    description: article.excerpt || `Read ${article.title} by ${article.author} at SpaFort.`,
-    keywords: ["wellness", "spa", article.category.name, ...(article.tags ?? []), article.author],
+    description: article.excerpt || `Read ${article.title} at SpaFort.`,
+    keywords: ["wellness", "spa", article.category.name, ...(article.tags ?? [])],
     alternates: { canonical },
     openGraph: {
       title: `${article.title} - SpaFort`,
-      description: article.excerpt || `Read ${article.title} by ${article.author} at SpaFort.`,
+      description: article.excerpt || `Read ${article.title} at SpaFort.`,
       url: canonical,
       siteName: "SpaFort",
       type: "article",
       locale: "en_US",
-      authors: [article.author],
       publishedTime: article.publishedAt,
       images: [{ url: img, width: 1200, height: 630, alt: `Article: ${article.title} - SpaFort` }],
     },
     twitter: {
       card: "summary_large_image",
       title: `${article.title} - SpaFort`,
-      description: article.excerpt || `Read ${article.title} by ${article.author} at SpaFort.`,
+      description: article.excerpt || `Read ${article.title} at SpaFort.`,
       images: [img],
     },
   };

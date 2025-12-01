@@ -1,9 +1,13 @@
+import dotenv from 'dotenv';
+
+// Load environment variables FIRST
+dotenv.config();
+
 import express from 'express';
 import mongoose from 'mongoose';
 import cors from 'cors';
 import helmet from 'helmet';
 import rateLimit from 'express-rate-limit';
-import dotenv from 'dotenv';
 
 import { v2 as cloudinary } from 'cloudinary';
 // Import routes
@@ -21,10 +25,6 @@ import articleCategoryRoutes from './routes/articleCategories.js';
 import memberRegistrationRoutes from './routes/memberRegistrations.js';
 import bookingRoutes from './routes/bookings.js';
 import galleryRoutes from "./routes/gallery.js";
-
-
-// Load environment variables
-dotenv.config();
 
 // Configure Cloudinary
 cloudinary.config({

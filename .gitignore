@@ -16,7 +16,20 @@ dist
 dist-ssr
 build
 *.local
+
+# Environment files
 .env
+.env.local
+.env.development
+.env.production
+.env.staging
+
+# Backend environment files
+backend/.env
+backend/.env.local
+backend/.env.development
+backend/.env.production
+backend/.env.staging
 
 # Editor directories and files
 .vscode/*

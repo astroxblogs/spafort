@@ -49,12 +49,11 @@ const [uploadedType, setUploadedType] = useState<'featured' | 'content' | null>(
     title: '',
     excerpt: '',
     content: '',
-    author: '',
     category: '',
     published: false,
     tags: '',
-    seoTitle: '',
-    seoDescription: '',
+    // seoTitle: '',
+    // seoDescription: '',
     featuredImage: '',
   });
   const router = useRouter();
@@ -80,11 +79,15 @@ const [uploadedType, setUploadedType] = useState<'featured' | 'content' | null>(
   const loadCategories = async () => {
     try {
       const response = await apiService.getArticleCategories();
-      if (response) {
-        setCategories(response);
+      if (response && response.success && Array.isArray(response.data)) {
+        setCategories(response.data);
+      } else {
+        console.error('Invalid categories response:', response);
+        setCategories([]);
       }
     } catch (error) {
       console.error('Failed to load categories:', error);
+      setCategories([]);
     }
   };
 
@@ -203,27 +206,15 @@ const [uploadedType, setUploadedType] = useState<'featured' | 'content' | null>(
               </CardDescription>
             </CardHeader>
             <CardContent className="space-y-4">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div className="space-y-2">
-                  <Label htmlFor="title">Title *</Label>
-                  <Input
-                    id="title"
-                    value={formData.title}
-                    onChange={(e) => handleInputChange('title', e.target.value)}
-                    placeholder="Enter article title"
-                    required
-                  />
-                </div>
-                <div className="space-y-2">
-                  <Label htmlFor="author">Author *</Label>
-                  <Input
-                    id="author"
-                    value={formData.author}
-                    onChange={(e) => handleInputChange('author', e.target.value)}
-                    placeholder="Enter author name"
-                    required
-                  />
-                </div>
+              <div className="space-y-2">
+                <Label htmlFor="title">Title *</Label>
+                <Input
+                  id="title"
+                  value={formData.title}
+                  onChange={(e) => handleInputChange('title', e.target.value)}
+                  placeholder="Enter article title"
+                  required
+                />
               </div>
 
               <div className="space-y-2">
@@ -336,7 +327,7 @@ const [uploadedType, setUploadedType] = useState<'featured' | 'content' | null>(
             </CardContent>
           </Card>
 
-          <Card>
+          {/* <Card>
             <CardHeader>
               <CardTitle>SEO Settings</CardTitle>
               <CardDescription>
@@ -365,7 +356,7 @@ const [uploadedType, setUploadedType] = useState<'featured' | 'content' | null>(
                 />
               </div>
             </CardContent>
-          </Card>
+          </Card> */}
 
           <div className="flex justify-end gap-4">
             <Button

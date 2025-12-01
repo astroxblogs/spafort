@@ -3,7 +3,7 @@
 import { motion } from "framer-motion";
 import Link from "next/link";
 import { marked } from "marked";
-import { Calendar, Clock, User, ArrowLeft, Share2 } from "lucide-react";
+import { Calendar, Clock, ArrowLeft, Share2 } from "lucide-react";
 import { Layout } from "@/components/layout/Layout";
 
 export interface Article {
@@ -13,7 +13,6 @@ export interface Article {
   excerpt: string;
   content: string;
   featuredImage?: string;
-  author: string;
   publishedAt: string;
   readTime?: number;
   category: { name: string; slug: string };
@@ -64,10 +63,6 @@ export default function ArticleClient({ article }: { article: Article }) {
 
               <div className="flex flex-wrap items-center justify-between gap-4 py-5 border-y border-[#eadfcd]">
                 <div className="flex items-center gap-6 text-sm text-gray-600">
-                  <div className="flex items-center gap-2">
-                    <User className="w-4 h-4" />
-                    <span>{article.author}</span>
-                  </div>
                   <div className="flex items-center gap-2">
                     <Calendar className="w-4 h-4" />
                     <span>

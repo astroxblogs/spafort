@@ -1,5 +1,8 @@
 import express from 'express';
 import Booking from '../models/Booking.js';
+import Service from '../models/Service.js';
+import Category from '../models/Category.js';
+import brevoEmailService from '../services/brevoEmailService.js';
 
 const router = express.Router();
 
@@ -99,6 +102,47 @@ router.post('/', async (req, res) => {
     });
 
     await booking.save();
+
+    // Fetch service and category details for email
+    try {
+      const service = await Service.findById(serviceId).populate('category');
+      const category = await Category.findById(serviceCategory);
+
+      if (service && category) {
+        const serviceDetails = {
+          title: service.title,
+          category: category.name,
+          duration: serviceDuration,
+          price: servicePrice,
+          benefits: service.benefits || [],
+          longDesc: service.longDesc || '',
+        };
+
+        const bookingData = {
+          name,
+          email,
+          mobile,
+          address,
+          bookingDate,
+          bookingTime,
+          serviceCategory: category.name,
+          serviceId: service.title,
+          serviceDuration,
+          servicePrice,
+          notes,
+          bookingReference: booking.bookingReference,
+        };
+
+        // Send confirmation email (don't fail booking if email fails)
+        const emailSent = await brevoEmailService.sendBookingConfirmationEmail(bookingData, serviceDetails);
+        if (!emailSent) {
+          console.warn(`Failed to send confirmation email to ${email}, but booking was successful`);
+        }
+      }
+    } catch (emailError) {
+      console.error('Error sending confirmation email:', emailError);
+      // Don't fail the booking if email sending fails
+    }
 
     res.status(201).json({
       success: true,

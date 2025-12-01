@@ -30,7 +30,7 @@ interface Article {
   title: string;
   slug: string;
   excerpt: string;
-  author: string;
+  // author: string;
   published: boolean;
   publishedAt?: string;
   category: ArticleCategory;
@@ -65,7 +65,7 @@ export default function AddedArticlesPage() {
   useEffect(() => {
     const filtered = articles.filter(article =>
       article.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      article.author.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      
       article.category?.name?.toLowerCase().includes(searchTerm.toLowerCase())
     );
     setFilteredArticles(filtered);
@@ -200,7 +200,7 @@ export default function AddedArticlesPage() {
                         {article.excerpt}
                       </p>
                       <div className="flex items-center gap-4 text-sm text-gray-500">
-                        <span>By {article.author}</span>
+                        {/* <span>By {article.author}</span> */}
                         <span>{article.category?.name || 'No Category'}</span>
                         <span>{new Date(article.createdAt).toLocaleDateString()}</span>
                       </div>
