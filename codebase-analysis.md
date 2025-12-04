@@ -209,7 +209,7 @@ useEffect(() => {
 ### **API Service Layer** (`src/lib/api.ts`)
 ```typescript
 class ApiService {
-  private baseURL = process.env.NEXT_PUBLIC_BACKEND_URL || 'http://localhost:5000';
+  private baseURL = process.env.NEXT_PUBLIC_BACKEND_URL || 'http://localhost:5002';
   
   private async request(endpoint: string, options: RequestInit = {}) {
     // Automatic auth header injection
@@ -364,13 +364,13 @@ npm run dev          # Next.js dev server on :3000
 
 # Backend  
 cd backend/
-npm run dev          # Express server on :5000
+npm run dev          # Express server on :5002
 ```
 
 ### **Environment Variables**
 ```env
 # Frontend (.env.local)
-NEXT_PUBLIC_BACKEND_URL=http://localhost:5000
+NEXT_PUBLIC_BACKEND_URL=http://localhost:5002
 NEXT_PUBLIC_SITE_URL=http://localhost:3000
 
 # Backend (.env)

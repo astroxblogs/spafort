@@ -8,4 +8,9 @@ const nextConfig = {
   },
 }
 
+// Force port for development
+if (process.env.NODE_ENV === 'development') {
+  process.env.PORT = '3002';
+}
+
 export default nextConfig
