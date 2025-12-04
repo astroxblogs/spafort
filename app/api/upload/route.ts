@@ -4,7 +4,7 @@ export const runtime = 'nodejs'
 export const dynamic = 'force-dynamic' // ensure route is built in dev/prod
 
 const BACKEND_URL =
-  process.env.BACKEND_URL?.replace(/\/+$/, '') || 'http://localhost:5000'
+  process.env.NEXT_PUBLIC_BACKEND_URL?.replace(/\/+$/, '') || 'http://localhost:5002'
 
 // Build Authorization from header if present, else from cookies
 function getBearer(req: NextRequest): string | null {

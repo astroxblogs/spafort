@@ -1,7 +1,7 @@
 // app/api/auth/login/route.ts
 import { NextRequest, NextResponse } from 'next/server';
 
-const BACKEND = process.env.BACKEND_URL ?? 'http://localhost:5000';
+const BACKEND = process.env.NEXT_PUBLIC_BACKEND_URL ?? 'http://localhost:5002';
 
 export async function GET() {
   return NextResponse.json({ ok: true, route: '/api/auth/login' });

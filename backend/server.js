@@ -35,7 +35,7 @@ cloudinary.config({
 
 // Create Express app
 const app = express();
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 5002;
 
 // Security middleware
 app.use(helmet());
@@ -44,12 +44,12 @@ app.use(cors({
     // Allow requests with no origin (like mobile apps or curl requests)
     if (!origin) return callback(null, true);
 
-    // Allow localhost for development
-    if (origin.startsWith('http://localhost:')) return callback(null, true);
+    // Allow localhost for development (ports 3000, 3002)
+    if (origin.startsWith('http://localhost:3000') || origin.startsWith('http://localhost:3002')) return callback(null, true);
 
-    // Allow the specific Netlify domain (with or without trailing slash)
-    const netlifyDomain = 'https://veloraaspa.netlify.app';
-    if (origin === netlifyDomain || origin === netlifyDomain + '/') {
+    // Allow SpaFort domain (with or without trailing slash)
+    const spafortDomain = 'https://spafort.com';
+    if (origin === spafortDomain || origin === spafortDomain + '/') {
       return callback(null, true);
     }
 
