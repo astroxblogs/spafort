@@ -5,11 +5,11 @@
   "main": "server.js",
   "type": "module",
   "scripts": {
-  "dev": "copy .env.development .env && set NODE_ENV=development && nodemon server.js",
-  "start": "copy .env.production .env && set NODE_ENV=production && node server.js",
-  "create-admin": "node scripts/create-admin.js",
-  "build": "echo 'No build step required for Node.js backend'"
-},
+    "dev": "set ENV_FILE=.env.development&&nodemon server.js",
+    "start": "set ENV_FILE=.env.production&& node server.js",
+    "create-admin": "node scripts/create-admin.js",
+    "build": "echo 'No build step required for Node.js backend'"
+  },
 
   "keywords": [
     "cms",

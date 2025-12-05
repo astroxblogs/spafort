@@ -4,9 +4,10 @@
   "version": "0.0.0",
   "type": "module",
  "scripts": {
-   "dev": "copy .env.development .env.local && concurrently \"set PORT=3002 && npx next dev\" \"cd backend && npm run dev\"",
+   "dev": "copy .env.development .env.local && concurrently \"set PORT=3001 && npx next dev\" \"cd backend && npm run dev\"",
    "build": "copy .env.production .env.local && npx next build",
-   "start": "copy .env.production .env.local && npx next build && concurrently \"npx next start\" \"cd backend && npm run start\""
+   "start": "copy .env.production .env.local && npx next build && concurrently \"npx next start\" \"cd backend && npm run start\"",
+   "local-prod": "copy .env.development .env.local && concurrently \"set PORT=3002 && npx next dev\" \"cd backend && npm run start\""
  },
 
   "dependencies": {

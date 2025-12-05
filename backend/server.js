@@ -1,13 +1,16 @@
 import dotenv from "dotenv";
 
-const envFile =
-  process.env.NODE_ENV === "production"
-    ? ".env.production"
-    : ".env.development";
+// Determine which env file to load
+const envFile = process.env.ENV_FILE || ".env.development";
 
-dotenv.config({ path: envFile });
+// Load the specific env file
+const result = dotenv.config({ path: envFile });
 
 console.log(` Loaded ENV file: ${envFile}`);
+console.log(` dotenv result:`, result.error ? `Error: ${result.error.message}` : 'Success');
+console.log(` NODE_ENV: ${process.env.NODE_ENV}`);
+console.log(` PORT: ${process.env.PORT}`);
+console.log(` MONGODB_URI: ${process.env.MONGODB_URI ? 'Set' : 'Not set'}`);
 
 import express from 'express';
 import mongoose from 'mongoose';
