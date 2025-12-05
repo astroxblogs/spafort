@@ -1,7 +1,13 @@
-import dotenv from 'dotenv';
+import dotenv from "dotenv";
 
-// Load environment variables FIRST
-dotenv.config();
+const envFile =
+  process.env.NODE_ENV === "production"
+    ? ".env.production"
+    : ".env.development";
+
+dotenv.config({ path: envFile });
+
+console.log(` Loaded ENV file: ${envFile}`);
 
 import express from 'express';
 import mongoose from 'mongoose';

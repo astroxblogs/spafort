@@ -18,8 +18,8 @@ async function getSiteUrlFromRequest() {
   return process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000";
 }
 
-async function fetchArticle(base: string, categorySlug: string, articleSlug: string): Promise<Article | null> {
-  const url = `${base}/api/articles/category/${encodeURIComponent(categorySlug)}/${encodeURIComponent(articleSlug)}`;
+async function fetchArticle(categorySlug: string, articleSlug: string): Promise<Article | null> {
+  const url = `${process.env.NEXT_PUBLIC_BACKEND_URL || 'http://localhost:5002'}/api/articles/category/${encodeURIComponent(categorySlug)}/${encodeURIComponent(articleSlug)}`;
   const res = await fetch(url, { cache: "no-store", next: { revalidate: 0 } });
   if (!res.ok) return null;
   const json = await res.json().catch(() => null);
@@ -39,7 +39,7 @@ export async function generateMetadata(
 
   // Fetch article data for OG/Twitter (absolute URL built from env)
   const res = await fetch(
-    `${publicBase}/api/articles/category/${encodeURIComponent(categorySlug)}/${encodeURIComponent(articleSlug)}`,
+    `${process.env.NEXT_PUBLIC_BACKEND_URL || 'http://localhost:5002'}/api/articles/category/${encodeURIComponent(categorySlug)}/${encodeURIComponent(articleSlug)}`,
     { cache: "no-store" }
   );
   const json = res.ok ? await res.json().catch(() => null) : null;
@@ -99,8 +99,7 @@ export async function generateMetadata(
 
 export default async function Page({ params }: { params: Promise<Params> }) {
   const { categorySlug, articleSlug } = await params;   // ✅ await params
-  const publicBase = process.env.NEXT_PUBLIC_SITE_URL || (await getSiteUrlFromRequest());
-  const article = await fetchArticle(publicBase, categorySlug, articleSlug);
+  const article = await fetchArticle(categorySlug, articleSlug);
 
   if (!article) {
     return (

@@ -1,7 +1,7 @@
 import { AuthService } from './auth';
 
 class ApiService {
-  private baseURL = `${process.env.NEXT_PUBLIC_BACKEND_URL || 'http://localhost:5000'}/api`;
+  private baseURL = `${process.env.NEXT_PUBLIC_BACKEND_URL || 'http://localhost:5002'}/api`;
 
   private async request(endpoint: string, options: RequestInit = {}) {
     const url = `${this.baseURL}${endpoint}`;

@@ -3,21 +3,12 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "scripts": {
-    "dev": "copy .env.development .env.local && set PORT=3002 && npx next dev --turbo",
-    "build": "copy .env.production .env.local && npx next build",
-    "start": "npm run env:prod && npm run build && concurrently \"npm run start:frontend\" \"npm run start:backend\"",
-    "start:frontend": "copy .env.production .env.local && npx next start",
-    "start:backend": "cd backend && npm run start",
-    "lint": "npx next lint",
-    "env:dev": "node scripts/switch-env.js dev",
-    "env:prod": "node scripts/switch-env.js prod",
-    "setup:dev": "npm run env:dev && npm install",
-    "setup:prod": "npm run env:prod && npm install",
-    "backend:dev": "npm run env:dev && cd backend && npm run dev",
-    "backend:prod": "npm run env:prod && cd backend && npm run start",
-    "backend:start": "npm run env:prod && cd backend && npm run start"
-  },
+ "scripts": {
+   "dev": "copy .env.development .env.local && concurrently \"set PORT=3002 && npx next dev\" \"cd backend && npm run dev\"",
+   "build": "copy .env.production .env.local && npx next build",
+   "start": "copy .env.production .env.local && npx next build && concurrently \"npx next start\" \"cd backend && npm run start\""
+ },
+
   "dependencies": {
     "@fontsource/playfair-display": "^5.2.8",
     "@hookform/resolvers": "^3.10.0",

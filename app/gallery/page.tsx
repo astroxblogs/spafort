@@ -12,18 +12,16 @@ type Settings = {
   gallery_page_hero_subtitle?: string;
 };
 
-async function fetchSettings(publicBase: string): Promise<Settings> {
-  const res = await fetch(`${publicBase}/api/settings`, { cache: "no-store" });
+async function fetchSettings(): Promise<Settings> {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL || 'http://localhost:5002'}/api/settings`, { cache: "no-store" });
   if (!res.ok) return {};
   const json = await res.json().catch(() => null);
   return (json?.data as Settings) ?? {};
 }
 
 export async function generateMetadata(): Promise<Metadata> {
-  const publicBase =
-    process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000";
-
-  const settings = await fetchSettings(publicBase);
+  const settings = await fetchSettings();
+  const publicBase = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000";
 
   const title = (settings.gallery_page_hero_title || "Gallery").trim();
   const description =
@@ -60,10 +58,7 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default async function Page() {
-  const publicBase =
-    process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000";
-
-  const settings = await fetchSettings(publicBase);
+  const settings = await fetchSettings();
 
   const initialTitle = (settings.gallery_page_hero_title || "Gallery").trim();
   const initialSubtitle =
